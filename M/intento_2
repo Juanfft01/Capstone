@@ -1,0 +1,14 @@
+from CageCavityCalc.CageCavityCalc import cavity
+import MDAnalysis
+import gemmi
+
+cav = cavity()
+
+syst = MDAnalysis.Universe("ejemplo 9554.cif")
+
+volume = []
+for ts in syst.trajectory:
+    cav.read_mdanalysis(syst)
+    volume.append(cav.calculate_volume())
+
+print(volume)
